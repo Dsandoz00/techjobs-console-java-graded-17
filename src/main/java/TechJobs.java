@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,8 +63,11 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not implemented yet.");
+                    ArrayList<HashMap<String, String>> everyresults = JobData.findByValue(searchTerm);
+                    printJobs(everyresults);
                 } else {
+                    ArrayList<HashMap<String, String>> colresults = JobData.findByColumnAndValue(searchField, searchTerm);
+                    printJobs(colresults);
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
             }
@@ -120,6 +124,18 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        if (someJobs.isEmpty()) {
+            System.out.println("No results found.");
+        } else {
+            for (HashMap<String, String> job : someJobs) {
+                System.out.println("\n*** Job Listing ***");
+                for (String key : job.keySet()) {
+                    System.out.println(key + ": " + job.get(key));
+                }
+            }
+        }
     }
 }
+
+
+//How can  I print a list of jobs to the console in a nicely formatted manner? What t

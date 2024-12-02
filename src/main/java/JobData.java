@@ -71,11 +71,13 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
+        String lowerCaseHolding = value.toLowerCase();
+
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue != null && aValue.toLowerCase().contains(lowerCaseHolding)) {
                 jobs.add(row);
             }
         }
@@ -94,8 +96,21 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
+        String lowerCaseVal = value.toLowerCase();
+
+       ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+       for (HashMap<String, String> row : allJobs) {
+           for (String key : row.keySet()) {
+               String fieldValue = row.get(key).toLowerCase();
+               if (fieldValue.contains(lowerCaseVal)) {
+                   jobs.add(row);
+                   break;
+               }
+           }
+       }
         // TODO - implement this method
-        return null;
+        return jobs;
     }
 
     /**
