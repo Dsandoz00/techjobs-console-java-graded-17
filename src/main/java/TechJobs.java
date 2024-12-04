@@ -138,4 +138,4 @@ public class TechJobs {
 }
 
 
-//How can  I print a list of jobs to the console in a nicely formatted manner? What t
+//How can  I print a list of jobs to the console in a nicely formatted manner?
